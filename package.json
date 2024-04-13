@@ -9,16 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cosmjs/amino": "./cosmjs/packages/amino",
+    "@cosmjs/encoding": "./cosmjs/packages/encoding",
+    "@cosmjs/proto-signing": "./cosmjs/packages/proto-signing",
+    "@cosmjs/stargate": "./cosmjs/packages/stargate",
+    "@cosmjs/tendermint-rpc": "./cosmjs/packages/tendermint-rpc",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.15",
+    "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.1.4"
+    "recoil": "^0.7.7"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.1.4"
+    "eslint-config-next": "14.1.4",
+    "typescript": "^5"
   }
 }
