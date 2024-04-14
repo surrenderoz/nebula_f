@@ -40,7 +40,11 @@ export default function Hero() {
                     padding: '8px',
                     // gap: '10px',
                     justifyContent: 'space-evenly',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    display: {
+                        xs: 'none',
+                        md: 'block'
+                    }
 
                 }} onClick={() => router.push("/stake")}> Stake Now 
                 <Box sx={{
