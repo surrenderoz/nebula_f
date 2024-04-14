@@ -14,13 +14,17 @@ export default function Navbar() {
     const router = useRouter();
 
     async function handleRequest() {
-        const keplr = (window as any).keplr;
+        try {
+            const keplr = (window as any).keplr;
         await keplr.enable("froopyland_100-1");
         const offlineSigner = keplr.getOfflineSigner('froopyland_100-1');
         const accounts = await offlineSigner.getAccounts("froopyland_100-1");
         setAddress(accounts[0].address);
         console.log("aaa");
         return accounts[0].address;
+        } catch (error) {
+            
+        }
     }
     useEffect(() => {
         handleRequest()
