@@ -1,9 +1,15 @@
+
+'use client'
 import {Box, Typography, Button} from "@mui/material"
 import ArrowIcon from "../../../../public/assets/Arrow Right.svg";
 import Image from "next/image";
 import Background from "../background";
 import Wrapper from "../wrapper";
+
+import { useRouter } from "next/navigation";
+
 export default function Hero() {
+    const router = useRouter()
     return(
         <>
         <Background />
@@ -15,7 +21,6 @@ export default function Hero() {
                 margin: '150px 0',
                 rowGap: '100px',
                 alignItems: 'center'
-
             }} >
                     <Typography sx={{
                         fontSize: '64px',
@@ -37,7 +42,7 @@ export default function Hero() {
                     justifyContent: 'space-evenly',
                     cursor: 'pointer'
 
-                }}> Stake Now 
+                }} onClick={() => router.push("/stake")}> Stake Now 
                 <Box sx={{
                     background: '#B9F7FD',
                     borderRadius: '100%',                    

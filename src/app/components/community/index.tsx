@@ -9,9 +9,13 @@ export default function Community() {
            background: '#B9F7FD',
            padding: '100px 20px 0 100px',
            display: 'flex',
+           flexDirection: {
+            xs: 'column',
+            md: 'row'
+           },
            justifyContent: 'space-between',
            alignItems: 'center',
-            fontFamily: "__Lexend_Deca_e53e8d, __Lexend_Deca_Fallback_e53e8d"
+           fontFamily: "__Lexend_Deca_e53e8d, __Lexend_Deca_Fallback_e53e8d"
         }}>
             <Box>
                     <Typography sx={{

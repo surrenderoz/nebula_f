@@ -5,7 +5,10 @@ export default function Wrapper({children}: Readonly<{
   }>) {
     return(
         <Box sx={{
-            maxWidth: '1170px',
+            maxWidth: {
+                xs: '100%',
+                sm: '1170px'
+            },
             width: '100%',
             margin: 'auto',
             display: 'flex',

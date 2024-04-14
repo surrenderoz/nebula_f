@@ -34,7 +34,7 @@ export async function StakeNow(value: any) {
         let sendtx = await client.sendTokens(key.bech32Address, receiver, [{amount: String(valid_Value), denom: 'udym'}], {amount: [], gas: '500000'}, 'nDYM Staking');
         console.log(sendtx);
     
-        return true
+        return sendtx
 
     } catch (error) {
         console.log('errr', error);

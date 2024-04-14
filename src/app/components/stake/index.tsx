@@ -1,46 +1,102 @@
 'use client'
 import { Box, Button, Stack, TextField, Typography, Alert, CircularProgress } from "@mui/material";
+import {SigningStargateClient, QueryClient, setupIbcExtension} from "@cosmjs/stargate";
+import {Tendermint34Client} from "@cosmjs/tendermint-rpc"
+import type {IbcExtension} from '@cosmjs/stargate/build/modules/ibc/queries';
+
 import {connect_wallet} from "../../services/wallet";
 import {StakeNow} from "../../services/stake";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import TrxModel from "../trxmodel";
 
 
 export default function StakeComp() {   
-    const [value, setValue] = useState(0) ;
+    const [value, setValue] = useState(0);
+    const[ndym, setNDYM] = useState('');
+    const[dym, setDYM] = useState('');
+    const[price, setPrice] = useState('');
     const [loading, setLoading] = useState(false);
+    const[trx, setTrx] = useState('')
 
     async function handleSubmit() {
         setLoading(true)
-        // if(value == 0) return
-        let res = await StakeNow(value);
-        // console.log(res.code );
-        // if((res as any)?.code == 0) {
-        //     alert('Success')
-        // }
-        // else {
-        //     alert('there was an error');
-        //     setLoading(false)
-        // }
-
+        let res: any = await StakeNow(value);
         if(res) {
             setLoading(false);
-            alert('success')
+            console.log(res.transactionHash);
         }
+        setTrx(res.transactionHash)
         setValue(0)
-        setLoading(false)
+        setLoading(false);
+        setTimeout(() => {
+            setTrx('')
+        },3000)
+    };
 
+    async function getnDYM() {
+        try {
+            const receiver = "dym1393szjexfh4mfh5uv30zp8vq9492fadl557sh9";
+            const url = "https://froopyland.blockpi.network/rpc/v1/public";
+    
+            const keplr = await (window as any).keplr;
+    
+            const offlineSigner = keplr.getOfflineSigner('froopyland_100-1')
+            const acc = await offlineSigner.getAccounts();
+    
+            const stargate = SigningStargateClient;
+            const tm_client = await Tendermint34Client.connect(url);
+            let temp = QueryClient.withExtensions(tm_client);
+            let query_client: IbcExtension = setupIbcExtension(temp);
+            
+            const sigingClient = SigningStargateClient;
+
+            let client = await stargate.connectWithSigner(
+                url,
+                offlineSigner,
+            );
+
+            let key = await (window as any).keplr?.getKey("froopyland_100-1");
+            console.log(key.bech32Address);
+            let bal = await client.getBalance(key.bech32Address, 'ibc/7665D4508878234CA0B012F68701EF6CE69BE39413A7557F4583EBD614F8CEC9');
+            let bal2 = await client.getBalance(key.bech32Address, 'udym');
+            let bal3 = await client.getAllBalances(key.bech32Address);
+
+            setNDYM(String(bal.amount).substring(0,1))
+            setDYM(String(bal2.amount).substring(0,1))
+            // console.log("bal", bal2);
+            
+        } catch (error) {
+            
+        }
     }
+
+    async function getDymPrice() {
+        try {
+            const res = await fetch('https://www.binance.com/api/v3/ticker/price?symbol=DYMUSDT');
+            const jsn = await res.json();
+            setPrice(jsn.price)
+        } catch (error) {
+            setPrice('')
+        }
+    }
+    useEffect(() => {
+        getnDYM();
+        getDymPrice()
+    })
+
     return(
         <>
-        {/* <Alert content="View" title="title" /> */}
+            {
+                trx && <TrxModel hash={trx} />
+            }
             <Box sx={{
                 display: 'flex',
                 mt: '100px',
                 width: '100%',
                 maxWidth: '700px',
                 columnGap: '25px',
-                color: '#fff'
-              
+                color: '#fff',
+                fontFamily: '__Lexend_Deca_e53e8d!important'
             }}>
 
                 <Box sx={{
@@ -56,26 +112,26 @@ export default function StakeComp() {
                 }}>
                     <Stack>
                         <Typography fontSize={'14px'}>Available to stake</Typography>
-                        <Typography fontSize={'16px'}  fontWeight={700}>0 DYM</Typography>
-                        <Typography fontSize={'14px'}>$ 0</Typography>
+                        <Typography fontSize={'16px'}  fontWeight={700}>{dym} DYM</Typography>
+                        {/* <Typography fontSize={'14px'}>$ 0</Typography> */}
                     </Stack>
                     <Stack sx={{
                         fontSize: '14px'
                     }}>
                         <Typography>Dym Price</Typography>
-                        <Typography fontSize={'16px'}  fontWeight={700}>$5.0</Typography>
+                        <Typography fontSize={'16px'}  fontWeight={700}>$ {Number(price).toFixed()}</Typography>
                     </Stack>
                     <Stack sx={{
                         fontSize: '14px'
                     }}>
                         <Typography>Available to use in DeFi</Typography>
-                        <Typography fontSize={'16px'}  fontWeight={700}>0 nDYM</Typography>
-                        <Typography>$ 0</Typography>
+                        <Typography fontSize={'16px'}  fontWeight={700}>{ndym} nDYM</Typography>
+                        {/* <Typography>$ 0</Typography> */}
                     </Stack>
                     <Stack sx={{
                         fontSize: '14px'
                     }}>
-                        <Typography>Nebulifi APR</Typography>
+                        <Typography>NebulaFi APR</Typography>
                         <Typography color={'#05FF00'} fontSize={'16px'}  fontWeight={700}>17.0%</Typography>
                         <Typography>0.26% per week</Typography>
                     </Stack>

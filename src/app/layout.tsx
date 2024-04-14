@@ -6,7 +6,7 @@ const inter = Lexend_Deca({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Nebula Staking",
-  description: "Stake Dym",
+  description: "Liquid Staking Rollapp",
 };
 
 export default function RootLayout({
@@ -14,11 +14,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
+    return (
     <html lang="en">
-      <body className={inter.className} style={{margin: 0}}>
+      <body className={inter.className} style={{margin: 0, fontFamily: '__Lexend_Deca_e53e8d'}} >
         <Navbar />
-        {children}</body>
+        {children}
+        </body>
     </html>
   );
 }

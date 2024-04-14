@@ -4,15 +4,19 @@ import Wrapper from "../wrapper";
 const FaqData = [
     {
         key: "What is Nebulafi?",
-        value: 'We believe the future is modular, and @dymension is set to become the foundational protocol for the modular vision.'
+        value: 'Nebula Finance is a RollApp which offers liquid staked DYM. By staking your DYM coins with Nebula, you will receive an on-chain equal to your DYM staking position called nDYM. Liquid staked DYM will be used to secure Dymension, and you will be able to utilize nDYM for various DeFi activities in near future.'
     },
     {
-        key: "What is Nebulafi?",
-        value: 'We believe the future is modular, and @dymension is set to become the foundational protocol for the modular vision.'
+        key: "How does Nebula work ? ",
+        value: 'Nebula is built on top of  Dymension. You can liquid stake your DYM for nDYM. The DYM you staked will be delegated uniformly across Nebula’s validators through Nebula RollApp. Staking rewards will be automatically reflected on the dashboard.'
     },
     {
-        key: "What is Nebulafi?",
-        value: 'We believe the future is modular, and @dymension is set to become the foundational protocol for the modular vision.'
+        key: "How is the conversion rate calculated?",
+        value: 'The conversion rate is 1:1 as Dym/nDym'
+    },
+    {
+        key: "Fees",
+        value: 'Since Nebula operates as an on-chain protocol on Dymension, interacting with the platform will cause gas fees. The cost of gas fees will depend on the chains settings and demand.In addition to gas fees, there are other costs to consider. Nebula applies a 10% protocol fee on staking rewards.'
     }
 ];
 
@@ -27,6 +31,14 @@ export default function Faq() {
                     <Wrapper>
                        <Box sx={{
                         display: 'flex',
+                        padding: {
+                            xs: '0 20px',
+                            md: 0
+                        },
+                        flexDirection: {
+                            xs: 'column',
+                            md: 'row'
+                        },
                         gap: '50px',
                         mb: '200px'
                        }}>

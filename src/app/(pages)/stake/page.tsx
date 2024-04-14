@@ -1,7 +1,14 @@
+'use client'
 import StakeComp from "@/app/components/stake";
 import Wrapper from "@/app/components/wrapper";
+import {ThemeProvider, useTheme, createTheme} from "@mui/material";
 
 export default function Stake() {
+    const theme = createTheme({
+        typography: {
+            fontFamily: ['__Lexend_Deca_e53e8d'].join(',')
+        }
+      });
     return(
         <>
             <video 
@@ -20,9 +27,11 @@ export default function Stake() {
             >
                 <source src="/videos/stake.mp4"/>
             </video>
-            <Wrapper>
+           <ThemeProvider theme={theme}>
+           <Wrapper>
                 <StakeComp />
             </Wrapper>
+           </ThemeProvider>
         </>
     )
 }

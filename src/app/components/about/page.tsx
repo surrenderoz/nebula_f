@@ -14,16 +14,17 @@ export default function About() {
             display: 'flex',
             justifyContent: 'center',
             padding: '100px 0',
+            // flexDirection: {
+            //     xs: 'column'
+            // }
             // gap: '30px'
             
            }}>
             <Image src={OmanIcon} width={400} height={400} alt="icon" style={{
                 position: 'absolute',
                 top: -190,
-                left: -150,
-                // all: 'revert'
-                
-                zIndex: 0
+                left: -150,                
+                zIndex: 0,
             }}/>
             <Box>
             <Wrapper>
@@ -39,7 +40,10 @@ export default function About() {
                     fontSize: '20px'
                 }}>We are the home of</Typography>
                 <Typography sx={{
-                    fontSize: '48px',
+                    fontSize: {
+                        xs: '30px',
+                        md: '48px'
+                    },
                     fontWeight: 400
                 }}>Modular Liquid Staking 🏛️</Typography>
             </Box>
@@ -47,7 +51,15 @@ export default function About() {
             <Box sx={{
                 display: 'flex',
                 gap: '100px',
-                textAlign: 'center'
+                textAlign: 'center',
+                padding: {
+                    xs: '40px',
+                    md: 0
+                },
+                flexDirection: {
+                    xs: 'column',
+                    md: 'row'
+                }
             }}>
                 <Box sx={{
                     display: 'flex',
