@@ -7,7 +7,10 @@ export default function Community() {
         <>
         <Box sx={{
            background: '#B9F7FD',
-           padding: '100px 20px 0 100px',
+           padding: {
+            xs: '50px',
+            md: '100px 20px 0 100px'
+           },
            display: 'flex',
            flexDirection: {
             xs: 'column',
@@ -25,7 +28,7 @@ export default function Community() {
                     <Typography mb={'30px'} sx={{
                         fontSize: '48px',
                         fontWeight: 500
-                    }}>Stake with Nebulafi</Typography>
+                    }}>Stake with Nebula</Typography>
                     <Button sx={{
                         borderRadius: '100px',
                         width: '180px',
@@ -37,8 +40,10 @@ export default function Community() {
 
                     }}>Stake Now</Button>
             </Box>
-            <Box>
-                <Image  src={DymImg} width={undefined} height={undefined} alt="logo image"/>
+            <Box sx={{
+                // width
+            }}>
+                <Image src={DymImg} width={undefined} height={undefined} alt="logo image"/>
             </Box>
         </Box>
         </>

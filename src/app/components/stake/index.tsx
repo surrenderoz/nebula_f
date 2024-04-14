@@ -62,7 +62,7 @@ export default function StakeComp() {
             let bal3 = await client.getAllBalances(key.bech32Address);
 
             setNDYM(String(bal.amount).substring(0,1))
-            setDYM(String(bal2.amount).substring(0,1))
+            setDYM(String(bal2.amount).substring(0,3))
             // console.log("bal", bal2);
             
         } catch (error) {

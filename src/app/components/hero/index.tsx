@@ -43,7 +43,7 @@ export default function Hero() {
                     cursor: 'pointer',
                     display: {
                         xs: 'none',
-                        md: 'block'
+                        md: 'flex'
                     }
 
                 }} onClick={() => router.push("/stake")}> Stake Now 
