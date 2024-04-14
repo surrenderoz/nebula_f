@@ -88,7 +88,7 @@ export default function Footer() {
                                     flexDirection: 'column',
                                     color: '#9E9E9E'
                                 }}>
-                                    <Typography ><a style={{all: 'unset'}} target="blank" href="https://discord.gg/npA8386Dxa"> Dicord</a></Typography>
+                                    <Typography ><a style={{all: 'unset'}} target="blank" href="https://discord.gg/AMjcew9TtZ"> Discord</a></Typography>
                                     <Typography><a style={{all: 'unset'}} target="" href="/#"> Github</a></Typography>
                                 </Box>
                             </Box>

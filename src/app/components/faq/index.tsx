@@ -3,11 +3,11 @@ import Accordon from "./accordon";
 import Wrapper from "../wrapper";
 const FaqData = [
     {
-        key: "What is Nebulafi?",
+        key: "What is Nebula Finance?",
         value: 'Nebula Finance is a RollApp which offers liquid staked DYM. By staking your DYM coins with Nebula, you will receive an on-chain equal to your DYM staking position called nDYM. Liquid staked DYM will be used to secure Dymension, and you will be able to utilize nDYM for various DeFi activities in near future.'
     },
     {
-        key: "How does Nebula work ? ",
+        key: "How does Nebula work? ",
         value: 'Nebula is built on top of  Dymension. You can liquid stake your DYM for nDYM. The DYM you staked will be delegated uniformly across Nebula’s validators through Nebula RollApp. Staking rewards will be automatically reflected on the dashboard.'
     },
     {

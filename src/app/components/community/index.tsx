@@ -1,8 +1,11 @@
+'use client'
 import { Box, Button, Typography } from "@mui/material";
 import DymImg from "../../../../public/images/dymmoney.svg";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Community() {
+    const router = useRouter()
     return(
         <>
         <Box sx={{
@@ -38,7 +41,7 @@ export default function Community() {
                         cursor: 'pointer',
                         boxShadow: '0px 4px 4px 0px #00000040'
 
-                    }}>Stake Now</Button>
+                    }} onClick={() => router.push("/stake")}>Stake Now</Button>
             </Box>
             <Box sx={{
                 // width

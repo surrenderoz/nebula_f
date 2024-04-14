@@ -17,6 +17,20 @@ export default function StakeComp() {
     const[price, setPrice] = useState('');
     const [loading, setLoading] = useState(false);
     const[trx, setTrx] = useState('')
+    const[apr, setAPR] = useState(0);
+
+    async function getAPR() {
+        try {
+            const res = await fetch('https://fetchanalyticsrequest-xqbg2swtrq-uc.a.run.app/?networkId=dymension_1100-1');
+            let jsn = await res.json();
+            const { inflation, amount, bondedAmount } = jsn.totalSupply.value;
+            const fixedInflation =inflation * 100 / Math.pow(10, 18);
+            const apr = fixedInflation * amount / bondedAmount;
+            setAPR(+apr.toFixed(2))
+        } catch (error) {
+            
+        }
+    }
 
     async function handleSubmit() {
         setLoading(true)
@@ -30,7 +44,7 @@ export default function StakeComp() {
         setLoading(false);
         setTimeout(() => {
             setTrx('')
-        },3000)
+        },10000)
     };
 
     async function getnDYM() {
@@ -81,7 +95,8 @@ export default function StakeComp() {
     }
     useEffect(() => {
         getnDYM();
-        getDymPrice()
+        getDymPrice();
+        getAPR()
     })
 
     return(
@@ -131,9 +146,12 @@ export default function StakeComp() {
                     <Stack sx={{
                         fontSize: '14px'
                     }}>
-                        <Typography>NebulaFi APR</Typography>
-                        <Typography color={'#05FF00'} fontSize={'16px'}  fontWeight={700}>17.0%</Typography>
-                        <Typography>0.26% per week</Typography>
+                        <Typography>Nebula APR</Typography>
+                        <Typography color={'#05FF00'} fontSize={'16px'}  fontWeight={700}>{apr} %</Typography>
+                        <Typography>
+                            {
+                                String(apr/54).substring(0, 4)
+                            } % per week</Typography>
                     </Stack>
 
                 </Box>
@@ -160,11 +178,13 @@ export default function StakeComp() {
                                 color: '#000'
                             }
                         }} placeholder="0" value={value} onChange={(e:any) => setValue(e.target.value)} />
-                        <Typography sx={{
-                            color: 'grey',
-                            mt: '10px',
-                            fontSize: '12px'
-                        }}>connect your wallet to view your DYM balance</Typography>
+                        {
+                            !dym && <Typography sx={{
+                                color: 'grey',
+                                mt: '10px',
+                                fontSize: '12px'
+                            }}>connect your wallet to view your DYM balance</Typography>
+                        }
                        {loading ? <CircularProgress />
                        : <Button sx={{
                             mt: '30px',
@@ -194,14 +214,14 @@ export default function StakeComp() {
                             <Typography >You will recieve</Typography>
                             <Typography fontSize={'16px'}  fontWeight={700} >{value} nDYM</Typography>
                         </Stack>
-                        <Stack sx={{
+                        {/* <Stack sx={{
                             display: 'flex',
                             flexDirection: 'row',
                             justifyContent: 'space-between',
                         }}>
                             <Typography>Annual Interest</Typography>
                             <Typography fontSize={'16px'}  fontWeight={700}>0 nDYM</Typography>
-                        </Stack>
+                        </Stack> */}
                         <Stack sx={{
                             display: 'flex',
                             flexDirection: 'row',
