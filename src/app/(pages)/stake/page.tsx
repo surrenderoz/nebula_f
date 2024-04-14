@@ -10,6 +10,7 @@ export default function Stake() {
             muted
             style={{
                 height:"100vh",
+                width: '100%',
                 objectFit:"fill",
                 position: 'fixed',
                 top: 0,

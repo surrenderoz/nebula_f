@@ -91,7 +91,7 @@ export default function About() {
                     <Typography sx={{fontSize: '70px'}}>🎯</Typography>
                     <Typography sx={{fontSize: '20px', fontWeight: 500}}>Capital Efficiency</Typography>
                     <Typography sx={{fontSize: '12px', fontWeight:300}}>Liquid staking is enabling capital efficiency for users, 
-                    chain itself and DeFi protocols, as they don't compete with native APR; 
+                    chain itself and DeFi protocols, as they dont compete with native APR; 
                     rather adding a layer on top to strengthen the ecosystem.
                     </Typography>
 

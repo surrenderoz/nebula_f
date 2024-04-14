@@ -27,6 +27,8 @@ export default function StakeComp() {
             alert('success')
         }
         setValue(0)
+        setLoading(false)
+
     }
     return(
         <>

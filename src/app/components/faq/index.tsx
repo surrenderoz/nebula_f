@@ -67,7 +67,7 @@ function Below() {
                 // fl
             }}>
                 <Typography fontWeight={500} fontSize={'24px'}>
-                Future is modular, and we're just getting started
+                Future is modular, and were just getting started
                 </Typography>
                 <Typography fontWeight={500} fontSize={'54px'}>
                 Be part of the community and keep up to date with latest news !
