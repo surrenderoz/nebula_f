@@ -39,7 +39,7 @@ export default function StakeComp() {
             const url = "https://froopyland.blockpi.network/rpc/v1/public";
     
             const keplr = await (window as any).keplr;
-    
+            await keplr.enable("froopyland_100-1")
             const offlineSigner = keplr.getOfflineSigner('froopyland_100-1')
             const acc = await offlineSigner.getAccounts();
     
