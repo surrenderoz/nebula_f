@@ -134,7 +134,7 @@ export default function StakeComp() {
                         fontSize: '14px'
                     }}>
                         <Typography>Dym Price</Typography>
-                        <Typography fontSize={'16px'}  fontWeight={700}>$ {Number(price).toFixed()}</Typography>
+                        <Typography fontSize={'16px'}  fontWeight={700}>$ {Number(price).toFixed(2)}</Typography>
                     </Stack>
                     <Stack sx={{
                         fontSize: '14px'
