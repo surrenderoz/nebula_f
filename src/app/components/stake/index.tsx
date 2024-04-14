@@ -75,7 +75,7 @@ export default function StakeComp() {
             let bal2 = await client.getBalance(key.bech32Address, 'udym');
             let bal3 = await client.getAllBalances(key.bech32Address);
 
-            setNDYM(String(bal.amount).substring(0,1))
+            setNDYM(String(bal.amount).substring(0,3))
             setDYM(String(bal2.amount).substring(0,3))
             // console.log("bal", bal2);
             
@@ -127,7 +127,7 @@ export default function StakeComp() {
                 }}>
                     <Stack>
                         <Typography fontSize={'14px'}>Available to stake</Typography>
-                        <Typography fontSize={'16px'}  fontWeight={700}>{dym} DYM</Typography>
+                        <Typography fontSize={'16px'}  fontWeight={700}>{dym || 0} DYM</Typography>
                         {/* <Typography fontSize={'14px'}>$ 0</Typography> */}
                     </Stack>
                     <Stack sx={{
