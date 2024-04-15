@@ -20,6 +20,9 @@ export default function TrxModel({hash}: any) {
                 Transaction Successfull
             </Typography>
             <Typography color={'#fff'} textAlign={'center'}>
+                Your nDYM balance will update 20-30 minutes after the transaction is completed
+            </Typography>
+            <Typography color={'#fff'} textAlign={'center'}>
                 {String(hash).substring(0,7)}
             </Typography>
             <Button sx={{

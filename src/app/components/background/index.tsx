@@ -6,7 +6,7 @@ export default function Background() {
                 position: 'fixed',
                 width: '100%',
                 height: '100vh',
-                objectFit: 'none',
+                objectFit: 'cover',
                 top: 0
             }}>
                 <source src="/videos/background.mp4"/>

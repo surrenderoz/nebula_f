@@ -10,7 +10,7 @@ export default function Navbar() {
         "Home",
         "FAQ's",
         "Docs"
-    ]
+    ];
     const router = useRouter();
 
     async function handleRequest() {
@@ -38,18 +38,20 @@ export default function Navbar() {
                     md: 'space-between'
                 },
                 alignItems: 'center',
-                padding: '20px'
+                padding: '20px',
+                fontFamily: '__Lexend_Deca_e53e8d'
             }}>
                 <Image src={'/images/logo.png'} width={200} height={40} alt="logo" />
                 <Box sx={{
                     display: 'inline-flex',
                     columnGap: '20px',
                     color: '#B9F7FD',
-                    fontSize: '18px'
+                    fontSize: '18px',
+                    fontFamily: '__Lexend_Deca_e53e8d'
                 }}>
                     {
                         menue_items.map((value ,key) => (
-                            <Typography key={key} aria-activedescendant={"active" }sx={{
+                            <Typography fontFamily={'__Lexend_Deca_e53e8d'} key={key} aria-activedescendant={"active" }sx={{
                                 cursor: 'pointer',
                                 display: {
                                     xs: 'none',

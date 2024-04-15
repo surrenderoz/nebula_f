@@ -33,6 +33,7 @@ export default function StakeComp() {
     }
 
     async function handleSubmit() {
+        if(value == 0) return alert('Enter Amount')
         setLoading(true)
         let res: any = await StakeNow(value);
         if(res) {
@@ -75,10 +76,10 @@ export default function StakeComp() {
             let bal2 = await client.getBalance(key.bech32Address, 'udym');
             let bal3 = await client.getAllBalances(key.bech32Address);
 
-            setNDYM(String(bal.amount).substring(0,3))
-            setDYM(String(bal2.amount).substring(0,3))
-            // console.log("bal", bal2);
-            
+            const __value_of = +bal2.amount/10**18;
+            const __value_of2 = +bal.amount/10**18;
+            setDYM(__value_of.toFixed(2))
+            setNDYM(__value_of2.toFixed(2));            
         } catch (error) {
             
         }
@@ -96,7 +97,7 @@ export default function StakeComp() {
     useEffect(() => {
         getnDYM();
         getDymPrice();
-        getAPR()
+        getAPR();
     })
 
     return(
@@ -140,7 +141,7 @@ export default function StakeComp() {
                         fontSize: '14px'
                     }}>
                         <Typography>Available to use in DeFi</Typography>
-                        <Typography fontSize={'16px'}  fontWeight={700}>{ndym} nDYM</Typography>
+                        <Typography fontSize={'16px'}  fontWeight={700}>{ndym || 0} nDYM</Typography>
                         {/* <Typography>$ 0</Typography> */}
                     </Stack>
                     <Stack sx={{
