@@ -1,27 +1,26 @@
 'use client'
-import {Box, Typography, Button} from "@mui/material";
+import {Box, Typography, Button, Link} from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { connect_wallet } from "@/app/services/wallet";
 
 export default function Navbar() {
     const[address, setAddress] = useState(undefined);
     const menue_items = [
-        "Home",
-        "FAQ's",
-        "Docs"
+        {name: "Home", url: "/", target: ""},
+        {name: "FAQ's", url: "#", target: ""},
+        {name: "Docs", url: "https://nebula-finance-1.gitbook.io/nebula-finance", target: "blank"},
+        
+        
     ];
     const router = useRouter();
 
     async function handleRequest() {
         try {
-            const keplr = (window as any).keplr;
-        await keplr.enable("froopyland_100-1");
-        const offlineSigner = keplr.getOfflineSigner('froopyland_100-1');
-        const accounts = await offlineSigner.getAccounts("froopyland_100-1");
-        setAddress(accounts[0].address);
-        console.log("aaa");
-        return accounts[0].address;
+            let _address = await connect_wallet();
+            setAddress(_address[0].address)
+            
         } catch (error) {
             
         }
@@ -41,7 +40,9 @@ export default function Navbar() {
                 padding: '20px',
                 fontFamily: '__Lexend_Deca_e53e8d'
             }}>
+                <Link href="/">
                 <Image src={'/images/logo.png'} width={200} height={40} alt="logo" />
+                </Link>
                 <Box sx={{
                     display: 'inline-flex',
                     columnGap: '20px',
@@ -60,7 +61,7 @@ export default function Navbar() {
                                 ":active": {
                                     color: 'red'
                                 }
-                            }}>{value}</Typography> 
+                            }}><a href={value.url} target={value.target} style={{all: 'unset'}}>{value.name}</a></Typography> 
                         ))
                     }
                 </Box>
