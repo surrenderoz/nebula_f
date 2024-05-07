@@ -1,9 +1,14 @@
 'use client'
-import {Box, Typography, Button, Link} from "@mui/material";
+import {Box, Typography, Button, Link, LinearProgress} from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { connect_wallet } from "@/app/services/wallet";
+import {Widget} from "../../components/stake/stake";
+import abi from "../../services/abi.json";
+import Web3 from "web3";
+
+const web3 = new Web3(Web3.givenProvider);
 
 export default function Navbar() {
     const[address, setAddress] = useState(undefined);
@@ -11,11 +16,10 @@ export default function Navbar() {
         {name: "Home", url: "/", target: ""},
         {name: "FAQ's", url: "#", target: ""},
         {name: "Docs", url: "https://nebula-finance-1.gitbook.io/nebula-finance", target: "blank"},
-        
-        
+        {name: "Facuet", url: "/facuet", target: ""},
     ];
     const router = useRouter();
-
+    const [conn, setConn] = useState(true)
     async function handleRequest() {
         try {
             let _address = await connect_wallet();
@@ -25,7 +29,24 @@ export default function Navbar() {
             
         }
     }
+
+    async function GetDymBal() {
+        try {
+            web3.setProvider((window as any).ethereum);
+            let wallet = await web3.eth.getAccounts();
+            console.log(wallet, 'wallets');
+            
+            const contract = new web3.eth.Contract(abi, "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd");
+            let mtd = await contract.methods.balanceOf(wallet[0]).call({from: wallet[0]}).catch((err) => err);
+            console.log(mtd, "mtd");
+            
+        } catch (error) {
+            console.log(error, "in na");
+            
+        }
+    }
     useEffect(() => {
+        GetDymBal()
         handleRequest()
     })
     return(
@@ -101,7 +122,10 @@ export default function Navbar() {
                     }
                 }} onClick={() => router.push("/stake")}>{
                     String(address).substring(0 ,10)
-                }</Button>}
+                }</Button>
+                
+                }
+                 {/* <Widget conn={conn} loader={setConn}/> */}
                 
             </Box>
         

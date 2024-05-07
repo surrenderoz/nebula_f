@@ -13,14 +13,16 @@
     "@cosmjs/encoding": "./cosmjs/packages/encoding",
     "@cosmjs/proto-signing": "./cosmjs/packages/proto-signing",
     "@cosmjs/stargate": "./cosmjs/packages/stargate",
-    "@cosmjs/tendermint-rpc": "./cosmjs/packages/tendermint-rpc",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@mui/material": "^5.15.15",
+    "@truffle/hdwallet-provider": "^2.1.15",
     "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18",
-    "recoil": "^0.7.7"
+    "recoil": "^0.7.7",
+    "secretjs": "^1.12.5",
+    "web3": "^4.8.0"
   },
   "devDependencies": {
     "@types/node": "^20",

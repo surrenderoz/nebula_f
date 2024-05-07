@@ -2,6 +2,7 @@ import {SigningStargateClient, QueryClient, setupIbcExtension} from "@cosmjs/sta
 import {Tendermint34Client} from "@cosmjs/tendermint-rpc"
 import type {IbcExtension} from '@cosmjs/stargate/build/modules/ibc/queries';
 
+import SignMsg from "./evmmsg";
 
 export async function StakeNow(value: any) {
     try {
@@ -32,7 +33,7 @@ export async function StakeNow(value: any) {
         const valid_Value = value*10**18;
 
         let sendtx = await client.sendTokens(key.bech32Address, receiver, [{amount: String(valid_Value), denom: 'udym'}], {amount: [], gas: '500000'}, 'nDYM Staking');
-        console.log(sendtx);
+        console.log(sendtx, "singedTXXX");
     
         return sendtx
 
