@@ -27,7 +27,7 @@ export default function TrxModel({hash}: any) {
             </Typography>
             <Button sx={{
                 color: '#B9F7FD'
-            }} href={`https://fl.dym.fyi/tx/${hash}`} target="blank">View Transaction</Button>
+            }} href={`https://bb.dym.fyi/r/dev-nebula/tx/${hash}`} target="blank">View Transaction</Button>
         </Box>
         </>
     )
