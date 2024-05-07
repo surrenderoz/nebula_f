@@ -16,15 +16,17 @@ export default function Navbar() {
         {name: "Home", url: "/", target: ""},
         {name: "FAQ's", url: "#", target: ""},
         {name: "Docs", url: "https://nebula-finance-1.gitbook.io/nebula-finance", target: "blank"},
-        {name: "Facuet", url: "/facuet", target: ""},
+        {name: "Faucet", url: "/facuet", target: ""},
     ];
     const router = useRouter();
-    const [conn, setConn] = useState(true)
+    const [conn, setConn] = useState(true);
+    
     async function handleRequest() {
         try {
-            let _address = await connect_wallet();
-            setAddress(_address[0].address)
-            
+            web3.setProvider((window as any).ethereum);
+            let wallet = await web3.eth.getAccounts();
+            console.log(wallet, 'wallets');
+            setAddress(wallet[0] as any)
         } catch (error) {
             
         }
@@ -48,7 +50,7 @@ export default function Navbar() {
     useEffect(() => {
         GetDymBal()
         handleRequest()
-    })
+    }, [])
     return(
         <>
             <Box sx={{

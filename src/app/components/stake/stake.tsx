@@ -100,7 +100,7 @@ export default function StakeComp() {
         getnDYM();
         getDymPrice();
         getAPR();
-    })
+    }, [])
 
     function SetDloaders() {
         setDloader(true)
@@ -113,7 +113,7 @@ export default function StakeComp() {
                 trx && <TrxModel hash={trx} />
             }
             <Box sx={{display: 'flex', justifyContent: 'space-between', position: 'relative', top: '50px', gap: '20px', width: '300px'}}>
-                <Box sx={{
+                {/* <Box sx={{
                     background: '#fff',
                     width: '36px',
                     height: '36px',
@@ -136,7 +136,7 @@ export default function StakeComp() {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center'
-                }}>2</Box>
+                }}>2</Box> */}
             </Box>
             <Box sx={{
                 display: 'flex',
