@@ -1,4 +1,5 @@
 import { Box, Button, Stack, TextField, Typography, LinearProgress } from "@mui/material";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Web3 from "web3";
 
@@ -8,6 +9,7 @@ const web3 = new Web3(Web3.givenProvider);
 export default function Facuet() {
     const [address, setAddress] =  useState('');
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
     async function getAddress() {
         try {
             web3.setProvider((window as any).ethereum)
@@ -40,6 +42,7 @@ export default function Facuet() {
             alert('Request Submitted')
             localStorage.setItem('onlytime', JSON.stringify({amount: 1}));
             setLoading(false);
+            router.push('/stake')
         } catch (error) {
             console.log(error);
             setLoading(false);

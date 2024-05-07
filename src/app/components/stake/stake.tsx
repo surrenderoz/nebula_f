@@ -108,7 +108,6 @@ export default function StakeComp() {
 
     return(
         <>
-
             {
                 trx && <TrxModel hash={trx} />
             }
