@@ -10,7 +10,7 @@ import SignMsg from "./evmmsg";
 const web3 = new Web3(Web3.givenProvider);
 const abi = require("./abi.json");
 
-async function ConnectMeta() {
+export async function ConnectMeta() {
    try {
     // let meta = ethereum;\
     //@ts-ignore

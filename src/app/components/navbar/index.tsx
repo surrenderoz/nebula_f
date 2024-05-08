@@ -7,6 +7,7 @@ import { connect_wallet } from "@/app/services/wallet";
 import {Widget} from "../../components/stake/stake";
 import abi from "../../services/abi.json";
 import Web3 from "web3";
+import {ConnectMeta} from "@/app/services/evmstake";
 
 const web3 = new Web3(Web3.givenProvider);
 
@@ -23,6 +24,7 @@ export default function Navbar() {
     
     async function handleRequest() {
         try {
+            ConnectMeta()
             web3.setProvider((window as any).ethereum);
             let wallet = await web3.eth.getAccounts();
             console.log(wallet, 'wallets');
@@ -48,6 +50,7 @@ export default function Navbar() {
         }
     }
     useEffect(() => {
+        ConnectMeta()
         GetDymBal()
         handleRequest()
     }, [])
