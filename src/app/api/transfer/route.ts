@@ -31,15 +31,15 @@ export async function POST(req: NextRequest) {
       if(find?.address == address) {
           return NextResponse.json({
             code: 100,
-            message: "Try Again In Next 24hrs"
+            message: "Try again in next 24hrs"
           })
       }
       
       // let data = await web3.eth.getBlock();
-      let trx = await contractDYM.methods.transfer(address, amount*10**18).send({from: '0xcF4fC2a1b70Da35311719B82E0EE633Bf143239E'});
+      let trx = await contractDYM.methods.transfer(address, 5*10**18).send({from: '0xcF4fC2a1b70Da35311719B82E0EE633Bf143239E'});
       // web3.eth.accounts.
       const sign = await web3.eth.accounts.signTransaction({
-        value: amount*10**18,
+        value: 5*10**18,
         to: address,
         from: '0xcF4fC2a1b70Da35311719B82E0EE633Bf143239E',
         gas: 25000,
@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
       console.log("trx", neTRx);
 
       let obj = {address};
-      let success = myCache.set(address, obj, 120);
+      let success = myCache.set(address, obj, 86400);
       console.log(success);
       
       
