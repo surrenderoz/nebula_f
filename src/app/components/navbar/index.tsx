@@ -24,7 +24,7 @@ export default function Navbar() {
     
     async function handleRequest() {
         try {
-            ConnectMeta()
+            await ConnectMeta()
             web3.setProvider((window as any).ethereum);
             let wallet = await web3.eth.getAccounts();
             console.log(wallet, 'wallets');

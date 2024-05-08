@@ -41,11 +41,11 @@ export async function ConnectMeta() {
                     ],
                     "nativeCurrency": {
                       "name": "NBL",
-                      "symbol": "unbl",
+                      "symbol": "nbl",
                       "decimals": 18
                     },
                     "blockExplorerUrls": [
-                      ""
+                      "https://bb.dym.fyi/r/dev-nebula"
                     ]
                   }
                 ]
