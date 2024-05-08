@@ -2,7 +2,7 @@
 import StakeComp from "@/app/components/stake";
 import Wrapper from "@/app/components/wrapper";
 import {ThemeProvider, useTheme, createTheme} from "@mui/material";
-import Facuet from "@/app/components/facuet";
+import Facuet from "@/app/components/faucet";
 export default function Page() {
     const theme = createTheme({
         typography: {

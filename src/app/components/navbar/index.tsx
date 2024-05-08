@@ -15,8 +15,8 @@ export default function Navbar() {
     const menue_items = [
         {name: "Home", url: "/", target: ""},
         {name: "FAQ's", url: "#", target: ""},
-        {name: "Docs", url: "https://nebula-finance-1.gitbook.io/nebula-finance", target: "blank"},
-        {name: "Faucet", url: "/facuet", target: ""},
+        {name: "Docs", url: "#", target: ""},
+        {name: "Faucet", url: "/faucet", target: ""},
     ];
     const router = useRouter();
     const [conn, setConn] = useState(true);
