@@ -19,6 +19,8 @@ export async function ConnectMeta() {
     // const sig = await web3.eth.personal.sign("hello", "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd", "password!");
     //@ts-ignore
     const chainID = await ethereum.request({method: "eth_chainId"});
+    console.log(chainID, "chaindi");
+    
     if(chainID != "0x1465FF") {
         //@ts-ignore
        async function Attatch () {
@@ -34,8 +36,8 @@ export async function ConnectMeta() {
                       "https://json-rpc.nebula.evm.ra.blumbus.noisnemyd.xyz/"
                     ],
                     "iconUrls": [
-                      "https://xdaichain.com/fake/example/url/xdai.svg",
-                      "https://xdaichain.com/fake/example/url/xdai.png"
+                      "",
+                      ""
                     ],
                     "nativeCurrency": {
                       "name": "NBL",
