@@ -116,6 +116,8 @@ class EVMCompatibleProvider {
 }
 
 
+
+
 export async function Stake(value: number) {
     try {
         await ConnectMeta();

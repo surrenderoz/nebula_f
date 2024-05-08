@@ -23,11 +23,6 @@ export default function Facuet() {
     async function handleFund() {
         try {
             if(address == '') return alert('address is required');
-            let getVals: any = localStorage.getItem('onlytime');
-
-            let parsed = JSON.parse(getVals);
-            // console.log(, "parsed");
-            if(parsed?.amount == 1) return alert('you can only request 1 time in 24hrs');
             setLoading(true);
 
             let resp = await fetch('http://localhost:3000/api/transfer', {
@@ -39,8 +34,13 @@ export default function Facuet() {
             })
             const np = await resp.json();
             console.log(np);
+            if(np?.code == 100) {
+                setLoading(false);
+                return alert(np?.message)
+                
+            }
             alert('Request Submitted')
-            localStorage.setItem('onlytime', JSON.stringify({amount: 1}));
+            // localStorage.setItem('onlytime', JSON.stringify({amount: 1}));
             setLoading(false);
             router.push('/stake')
         } catch (error) {
