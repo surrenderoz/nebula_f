@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
       }
       
       // let data = await web3.eth.getBlock();
-      let trx = await contractDYM.methods.transfer(address, 5*10**18).send({from: '0xcF4fC2a1b70Da35311719B82E0EE633Bf143239E'});
+      let trx = await contractDYM.methods.transfer(address, 2*10**18).send({from: '0xcF4fC2a1b70Da35311719B82E0EE633Bf143239E'});
       // web3.eth.accounts.
       const sign = await web3.eth.accounts.signTransaction({
         value: 5*10**18,
