@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
       console.log(error);
       
       return NextResponse.json(
-        { error: "api not working", },
+        { error: "api not working", message: error },
         {
           status: 400
         }
