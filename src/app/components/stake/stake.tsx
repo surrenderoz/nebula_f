@@ -1,5 +1,5 @@
 'use client'
-import { Box, Button, Stack, TextField, Typography, Alert, CircularProgress } from "@mui/material";
+import { Box, Button, Stack, TextField, Typography, Alert, Slider } from "@mui/material";
 import {SigningStargateClient, QueryClient, setupIbcExtension} from "@cosmjs/stargate";
 // import {Tendermint34Client} from "@cosmjs/tendermint-rpc";
 import type {IbcExtension} from '@cosmjs/stargate/build/modules/ibc/queries';
@@ -96,6 +96,28 @@ export default function StakeComp() {
     function handleSubmit2() {
         setConn(conn ? false : true)
     }
+    const marks = [
+        {
+          value: 0,
+          label: '0%',
+        },
+        {
+          value: 25,
+          label: '25%',
+        },
+        {
+          value: 50,
+          label: '50%',
+        },
+        {
+          value: 75,
+          label: '75%',
+        },
+        {
+          value: 100,
+          label: '100%',
+        },
+    ]
     useEffect(() => {
         getnDYM();
         getDymPrice();
@@ -104,6 +126,12 @@ export default function StakeComp() {
 
     function SetDloaders() {
         setDloader(true)
+    }
+
+    function handleSlider(value: any) {
+        setValue((dym*value)/100)
+        console.log(value);
+        
     }
 
     return(
@@ -299,6 +327,32 @@ export default function StakeComp() {
                                     fontSize: '12px'
                                 }}>connect your wallet to view your DYM balance</Typography>
                             }
+                            <Slider
+                                step={25}
+                                // shiftStep={25}
+                                marks={marks}
+                                value={+((value/dym)*100).toFixed()}
+                                valueLabelDisplay="auto"
+                                min={0}
+                                max={100}
+                                onChange={(v: any) => handleSlider(v.target.value)}
+                            
+                               sx={{
+                                width: '95%',
+                                margin: 'auto',
+                                '& .MuiSlider-track': {
+                                    background: '#B9F7FD'
+                                },
+                                '& .MuiSlider-thumb': {
+                                    background: '#B9F7FD'
+                                },
+                                "& .MuiSlider-markLabel": {
+                                    color: '#fff'
+                                }
+                               }}
+                            />
+
+                            
                            {<Button sx={{
                             mt: '30px',
                             width: '100px',
