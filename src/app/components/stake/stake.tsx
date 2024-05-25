@@ -331,7 +331,7 @@ export default function StakeComp() {
                                 step={25}
                                 // shiftStep={25}
                                 marks={marks}
-                                value={+((value/dym)*100).toFixed()}
+                                value={+((value/dym || 0)*100).toFixed()}
                                 valueLabelDisplay="auto"
                                 min={0}
                                 max={100}
