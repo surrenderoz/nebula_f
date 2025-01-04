@@ -3,23 +3,54 @@
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_spender",
+				"name": "_ndym",
 				"type": "address"
 			},
 			{
-				"internalType": "uint256",
-				"name": "_amt",
-				"type": "uint256"
+				"internalType": "address",
+				"name": "_dym",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_multisigWallet",
+				"type": "address"
 			}
 		],
-		"name": "Apporve",
-		"outputs": [],
 		"stateMutability": "nonpayable",
-		"type": "function"
+		"type": "constructor"
 	},
 	{
-		"inputs": [],
-		"name": "eventTracker",
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "target",
+				"type": "address"
+			}
+		],
+		"name": "AddressEmptyCode",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "AddressInsufficientBalance",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_multisig",
+				"type": "address"
+			}
+		],
+		"name": "changeMultisig",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -28,17 +59,56 @@
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_address",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "_dym",
+				"name": "_newOwner",
 				"type": "address"
 			}
 		],
+		"name": "changeOwner",
+		"outputs": [],
 		"stateMutability": "nonpayable",
-		"type": "constructor"
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amt",
+				"type": "uint256"
+			}
+		],
+		"name": "depositDYM",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amt",
+				"type": "uint256"
+			}
+		],
+		"name": "depositToMultiSig",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "FailedInnerCall",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			}
+		],
+		"name": "SafeERC20FailedOperation",
+		"type": "error"
 	},
 	{
 		"anonymous": false,
@@ -56,7 +126,83 @@
 				"type": "uint256"
 			}
 		],
-		"name": "EtherReceived",
+		"name": "DYMMultisig",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "DYMReceived",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "DYMWithdrawl",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "multisigChanged",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"name": "ownerChanged",
 		"type": "event"
 	},
 	{
@@ -67,18 +213,10 @@
 				"type": "uint256"
 			}
 		],
-		"name": "TrxFrom",
+		"name": "withdrawalDYMRequest",
 		"outputs": [],
-		"stateMutability": "payable",
+		"stateMutability": "nonpayable",
 		"type": "function"
-	},
-	{
-		"stateMutability": "payable",
-		"type": "fallback"
-	},
-	{
-		"stateMutability": "payable",
-		"type": "receive"
 	},
 	{
 		"inputs": [
@@ -88,7 +226,20 @@
 				"type": "address"
 			}
 		],
-		"name": "balanceOFF",
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "checkBalance",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -114,10 +265,10 @@
 	},
 	{
 		"inputs": [],
-		"name": "get_address",
+		"name": "multisig",
 		"outputs": [
 			{
-				"internalType": "address",
+				"internalType": "address payable",
 				"name": "",
 				"type": "address"
 			}
@@ -127,7 +278,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "gltoken",
+		"name": "ndym",
 		"outputs": [
 			{
 				"internalType": "contract NDYM",
@@ -146,19 +297,6 @@
 				"internalType": "address payable",
 				"name": "",
 				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "reciveTokenDYM",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",

@@ -4,7 +4,7 @@ import {exec} from "child_process"
 import { assert } from "console";
 import Web3 from "web3";
 import HDWalletProvider from "@truffle/hdwallet-provider";
-const url = "https://json-rpc.nebula.evm.ra.blumbus.noisnemyd.xyz/";
+const url = "https://nebula.rpc.silknodes.io";
 const key = process.env.NEXT_PUBLIC_PK;
 const provider: any = new HDWalletProvider(String(key), url);
 import NodeCache from "node-cache";
@@ -14,7 +14,7 @@ const abi = require("./abi.json");
 
 const myCache = new NodeCache({checkperiod: 10, });
 
-const contractDYM = new web3.eth.Contract(abi, "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd");
+const contractDYM = new web3.eth.Contract(abi, "0x5FD55A1B9FC24967C4dB09C513C3BA0DFa7FF687");
 // const contractNBL = new web3.eth.Contract(abi, "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd");
 
 myCache.on("expired", (key, value) => {

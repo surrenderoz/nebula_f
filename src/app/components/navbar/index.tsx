@@ -40,7 +40,7 @@ export default function Navbar() {
             let wallet = await web3.eth.getAccounts();
             console.log(wallet, 'wallets');
             
-            const contract = new web3.eth.Contract(abi, "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd");
+            const contract = new web3.eth.Contract(abi, "0x5FD55A1B9FC24967C4dB09C513C3BA0DFa7FF687");
             let mtd = await contract.methods.balanceOf(wallet[0]).call({from: wallet[0]}).catch((err) => err);
             console.log(mtd, "mtd");
             

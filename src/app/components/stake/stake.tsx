@@ -67,12 +67,12 @@ export default function StakeComp() {
     async function getnDYM() {
         try {
             web3.setProvider((window as any).ethereum);
-            const contractdym = new web3.eth.Contract(require("../../services/abi.json"), "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd");
-            const contractNdym = new web3.eth.Contract(require("../../services/abi.json"), "0x9d023Bf48F9F8E92B9Ec2Da4E39cb7a2CfE13710");
+            const contractdym = new web3.eth.Contract(require("../../services/abi.json"), "0x5FD55A1B9FC24967C4dB09C513C3BA0DFa7FF687");
+            const contractNdym = new web3.eth.Contract(require("../../services/abi.json"), "0xB35D9d5D54AFD1946cBD6527669e377BCaEfA793");
             let address = await web3.eth.getAccounts();
             const balance = await contractdym.methods.balanceOf(address[0]).call({from: address[0]});
             const balance2 = await contractNdym.methods.balanceOf(address[0]).call({from: address[0]});
-            console.log("balance of ", balance2);
+            console.log("balance of NDYM", balance2);
             
             const __value_of = Number(balance)/10**18;
             const __value_of2 = Number(balance2)/10**18;

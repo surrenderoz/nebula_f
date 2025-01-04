@@ -21,7 +21,7 @@ export async function ConnectMeta() {
     const chainID = await ethereum.request({method: "eth_chainId"});
     console.log(chainID, "chaindi");
     
-    if(chainID != "0x1465FF") {
+    if(chainID != "0x23a62") {
         //@ts-ignore
        async function Attatch () {
         try {
@@ -30,10 +30,10 @@ export async function ConnectMeta() {
                 "method": "wallet_addEthereumChain",
                 "params": [
                   {
-                    "chainId": "0x1465FF",
-                    "chainName": "Nebula FI",
+                    "chainId": "0x23a62",
+                    "chainName": "Nebula Finance",
                     "rpcUrls": [
-                      "https://json-rpc.nebula.evm.ra.blumbus.noisnemyd.xyz/"
+                      "https://nebula.rpc.silknodes.io"
                     ],
                     "iconUrls": [
                       "",
@@ -57,10 +57,10 @@ export async function ConnectMeta() {
               "method": "wallet_addEthereumChain",
               "params": [
                 {
-                  "chainId": "0x1465FF",
-                  "chainName": "Nebula FI",
+                  "chainId": "0x23a62",
+                  "chainName": "Nebula Finance",
                   "rpcUrls": [
-                    "https://json-rpc.nebula.evm.ra.blumbus.noisnemyd.xyz/"
+                    "https://nebula.rpc.silknodes.io"
                   ],
                   "iconUrls": [
                     "https://xdaichain.com/fake/example/url/xdai.svg",
@@ -131,18 +131,18 @@ export async function Stake(value: number) {
         if(value ==0) return alert('Enter Amount');
         
 
-        const contract = new web3.eth.Contract(abi, "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd");
-        const contract2 = new web3.eth.Contract(require("./cof.json"), "0x9f0580fb6F3e2862362F2e183E1A7a37ABC14f9F");
+        const contract = new web3.eth.Contract(abi, "0x5FD55A1B9FC24967C4dB09C513C3BA0DFa7FF687");
+        const contract2 = new web3.eth.Contract(require("./cof.json"), "0xA7e3C7e3Aed8A32E23D1f5303455CEEdAD1565fE");
 
         let mtd = await contract.methods.balanceOf(wallet[0]).call({from: wallet[0]});
         // let keplr = (window as any).keplr;
-        console.log(mtd, "mtd");
-        const checkAllowed = await contract.methods.allowance(wallet[0], "0x9f0580fb6F3e2862362F2e183E1A7a37ABC14f9F").call({from: wallet[0]});
+        console.log(mtd, "balanceOf dym");
+        const checkAllowed = await contract.methods.allowance(wallet[0], "0xA7e3C7e3Aed8A32E23D1f5303455CEEdAD1565fE").call({from: wallet[0]});
         if(Number(checkAllowed) < value*10**18) {
-            await contract.methods.approve("0x9f0580fb6F3e2862362F2e183E1A7a37ABC14f9F", value*10**18).send({from: wallet[0]})
+            await contract.methods.approve("0xA7e3C7e3Aed8A32E23D1f5303455CEEdAD1565fE", value*10**18).send({from: wallet[0]})
         }
             
-        let rx = await contract2.methods.TrxFrom(value*10**18).send({from: wallet[0], gas: "5000000"})
+        let rx = await contract2.methods.depositDYM(value*10**18).send({from: wallet[0], gas: "5000000"})
         console.log(rx);
         
         
