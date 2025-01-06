@@ -15,11 +15,11 @@ export async function ConnectMeta() {
     // let meta = ethereum;\
     //@ts-ignore
     let acc = await ethereum.request({ method: "eth_requestAccounts" });
-    console.log(acc, "acc");
+    // console.log(acc, "acc");
     // const sig = await web3.eth.personal.sign("hello", "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd", "password!");
     //@ts-ignore
     const chainID = await ethereum.request({method: "eth_chainId"});
-    console.log(chainID, "chaindi");
+    // console.log(chainID, "chaindi");
     
     if(chainID != "0x23a62") {
         //@ts-ignore
@@ -86,10 +86,10 @@ export async function ConnectMeta() {
         //@ts-ignore
        
     }
-    console.log(chainID, "chainID");
+    // console.log(chainID, "chainID");
     
    } catch (error) {
-    console.log(error, "errr");
+    console.log(error);
     
    }
 }
@@ -124,7 +124,7 @@ export async function Stake(value: number) {
 
         web3.setProvider((window as any).ethereum);
         let wallet = await web3.eth.getAccounts();
-        console.log(wallet, "adda");
+        // console.log(wallet, "adda");
         //adress for evmmsg
         // await SignMsg(wallet[0])
 
@@ -136,14 +136,14 @@ export async function Stake(value: number) {
 
         let mtd = await contract.methods.balanceOf(wallet[0]).call({from: wallet[0]});
         // let keplr = (window as any).keplr;
-        console.log(mtd, "balanceOf dym");
+        // console.log(mtd, "balanceOf dym");
         const checkAllowed = await contract.methods.allowance(wallet[0], "0xA7e3C7e3Aed8A32E23D1f5303455CEEdAD1565fE").call({from: wallet[0]});
         if(Number(checkAllowed) < value*10**18) {
             await contract.methods.approve("0xA7e3C7e3Aed8A32E23D1f5303455CEEdAD1565fE", value*10**18).send({from: wallet[0]})
         }
             
         let rx = await contract2.methods.depositDYM(value*10**18).send({from: wallet[0], gas: "5000000"})
-        console.log(rx);
+        // console.log(rx);
         
         
         
@@ -165,13 +165,13 @@ async function withKeplr(value: number) {
         const [ethAddress] = await window.ethereum.request({
             method: "eth_requestAccounts",
         });
-        console.log(ethAddress, "et");
+        // console.log(ethAddress, "et");
        let normalText=  new Wallet(undefined,{
             bech32Prefix:"dym",
             coinType: 60
         } )
 
-        console.log(normalText, "normalText");
+        // console.log(normalText, "normalText");
         
         const wallet = await MetaMaskWallet.create((window as any).ethereum, ethAddress);
         // console.log(wallet., "hhh");
@@ -205,7 +205,7 @@ async function withKeplr(value: number) {
           });
           
     } catch (error) {
-        console.log(error, ":er");
+        console.log(error);
         
     }
 }

@@ -209,14 +209,14 @@ export default async function SignMsg(address: string) {
         const signature = await ethereum.request({ method: 'eth_signTypedData_v4', params: [ address, eip712Payload ] });
 
 
-        console.log(signature, "here wallet");
+        // console.log(signature, "here wallet");
       (await client).broadcastTx(Uint8Array.from(signature))
         // pubkeyToAddress(wallet.publicKey);
         // console.log(toBech32(wallet.publicKey, ), "here");
         
 
     } catch (error) {
-            console.log('signa', error);
+            console.log(error);
     }
 }
 
@@ -233,6 +233,7 @@ function ethereumSigToCosmosSig(ethSignature: any) {
     // const vValue = parseInt(v, 16);
 
     // Typically, v is not used in Cosmos signatures, so we usually concatenate r and s only
+    //@ts-ignore
     const cosmosSignature = Buffer.concat([rBuffer, sBuffer]);
 
     return cosmosSignature.toString('base64');

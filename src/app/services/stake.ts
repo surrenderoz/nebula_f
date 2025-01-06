@@ -6,7 +6,7 @@ import SignMsg from "./evmmsg";
 
 export async function StakeNow(value: any) {
     try {
-        console.log("working stake");
+        // console.log("working stake");
         if(value == 0) return alert('Enter Stake Amount')
         
         const receiver = "dym1393szjexfh4mfh5uv30zp8vq9492fadl557sh9";
@@ -28,17 +28,17 @@ export async function StakeNow(value: any) {
         );
 
         let key = await (window as any).keplr?.getKey("froopyland_100-1");
-        console.log(key.bech32Address);
+        // console.log(key.bech32Address);
 
         const valid_Value = value*10**18;
 
         let sendtx = await client.sendTokens(key.bech32Address, receiver, [{amount: String(valid_Value), denom: 'udym'}], {amount: [], gas: '500000'}, 'nDYM Staking');
-        console.log(sendtx, "singedTXXX");
+        // console.log(sendtx, "singedTXXX");
     
         return sendtx
 
     } catch (error) {
-        console.log('errr', error);
+        console.log(error);
         return true
     }
 }

@@ -1,5 +1,6 @@
 'use client'
-import { Box, Button, Stack, TextField, Typography, Alert, Slider } from "@mui/material";
+import { Box, Button, Stack, TextField, Typography, Alert, Slider,CircularProgress  } from "@mui/material";
+
 import {SigningStargateClient, QueryClient, setupIbcExtension} from "@cosmjs/stargate";
 // import {Tendermint34Client} from "@cosmjs/tendermint-rpc";
 import type {IbcExtension} from '@cosmjs/stargate/build/modules/ibc/queries';
@@ -54,7 +55,7 @@ export default function StakeComp() {
         let res: any = await Stake(value);
         if(res) {
             setLoading(false);
-            console.log(res.transactionHash);
+            // console.log(res.transactionHash);
         }
         setTrx(res?.transactionHash)
         setValue(0)
@@ -72,7 +73,7 @@ export default function StakeComp() {
             let address = await web3.eth.getAccounts();
             const balance = await contractdym.methods.balanceOf(address[0]).call({from: address[0]});
             const balance2 = await contractNdym.methods.balanceOf(address[0]).call({from: address[0]});
-            console.log("balance of NDYM", balance2);
+            // console.log("balance of NDYM", balance2);
             
             const __value_of = Number(balance)/10**18;
             const __value_of2 = Number(balance2)/10**18;
@@ -130,7 +131,7 @@ export default function StakeComp() {
 
     function handleSlider(value: any) {
         setValue((dym*value)/100)
-        console.log(value);
+        // console.log(value);
         
     }
 
@@ -353,18 +354,40 @@ export default function StakeComp() {
                             />
 
                             
-                           {<Button sx={{
-                            mt: '30px',
-                            width: '100px',
-                            height: '51px',
-                            borderRadius: '100px',
-                            padding: '14px 28px',
-                            background: '#B9F7FD',
-                            color: '#000',
-                            ":hover": {
-                                background: 'white'
-                            }
-                    }} onClick={() => handleSubmit()}>Stake</Button>}
+                           {
+                            loading ? <Box 
+                        
+                            sx={{
+                                mt: '30px',
+                             width: '100px',
+                             height: '51px',
+                             borderRadius: '100px',
+                            //  padding: '14px 28px',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                             background: '#ccc',
+                             color: '#000',
+                           
+                            }}
+                            >
+                                <CircularProgress size={30}/>
+                            </Box>
+                            : <Button 
+                           
+                            sx={{
+                             mt: '30px',
+                             width: '100px',
+                             height: '51px',
+                             borderRadius: '100px',
+                             padding: '14px 28px',
+                             background: '#B9F7FD',
+                             color: '#000',
+                             ":hover": {
+                                 background: 'white'
+                             }
+                     }} onClick={() => handleSubmit()}>Stake</Button>
+                    }
                         </Stack>
                         <Box sx={{
                             display: 'flex',

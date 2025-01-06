@@ -1,19 +1,19 @@
 export async function connect_wallet() {
     try {
-        console.log("loggin");
+        // console.log("loggin");
         
         if(typeof window != "undefined") {
-            console.log("hit connect");
+            // console.log("hit connect");
             
             let enable = await (window as any).keplr.enable('froopyland_100-1');
-            console.log(enable, "enable the chain");
+            // console.log(enable, "enable the chain");
             
             const offlineSigner = (window as any).keplr.getOfflineSigner('froopyland_100-1');
             const accounts = await offlineSigner.getAccounts();
             return accounts;
         }
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         suggetChain()
         
     }

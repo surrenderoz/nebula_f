@@ -14,7 +14,7 @@ export default function Facuet() {
         try {
             web3.setProvider((window as any).ethereum)
             const add = await web3.eth.getAccounts();
-            console.log(add[0], "add");
+            // console.log(add[0], "add");
             setAddress(add[0]);
         } catch (error) {
             console.log(error);   
@@ -33,7 +33,7 @@ export default function Facuet() {
                 })
             })
             const np = await resp.json();
-            console.log(np);
+            // console.log(np);
             if(np?.code == 100) {
                 setLoading(false);
                 return alert(np?.message)
@@ -44,7 +44,7 @@ export default function Facuet() {
             setLoading(false);
             router.push('/stake')
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             setLoading(false);
             
         }

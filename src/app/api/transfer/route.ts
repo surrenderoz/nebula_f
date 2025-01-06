@@ -4,7 +4,7 @@ import {exec} from "child_process"
 import { assert } from "console";
 import Web3 from "web3";
 import HDWalletProvider from "@truffle/hdwallet-provider";
-const url = "https://nebula.rpc.silknodes.io";
+const url = "https://nebula.json-rpc.silknodes.io";
 const key = process.env.NEXT_PUBLIC_PK;
 const provider: any = new HDWalletProvider(String(key), url);
 import NodeCache from "node-cache";
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     try {
       const {address, amount} = await req.json();
       let find: any = myCache.get(address);
-      console.log(find);
+      // console.log(find);
       
       if(find?.address == address) {
           return NextResponse.json({
@@ -37,20 +37,30 @@ export async function POST(req: NextRequest) {
       let trx = await contractDYM.methods.transfer(address, 2*10**18).send({from: '0xcF4fC2a1b70Da35311719B82E0EE633Bf143239E'});
       // web3.eth.accounts.
       let nonce = await web3.eth.getBlock();
-      console.log(nonce, "nonce");
+      // console.log(nonce, "nonce");
+     let gass =  await web3.eth.estimateGas({
+      value: 5*10**18,
+      to: address,
+      from: '0xcF4fC2a1b70Da35311719B82E0EE633Bf143239E'
+    })
+
+    const gasPrice = await web3.eth.getGasPrice();
+    console.log('Gas Price (Wei):', gasPrice);
+
+      console.log(gass, gasPrice, "gass");
       
       const sign = await web3.eth.accounts.signTransaction({
         value: 5*10**18,
         to: address,
         from: '0xcF4fC2a1b70Da35311719B82E0EE633Bf143239E',
-        gas: 25000,
-        gasPrice: 10,
+        gas: gass,
+        gasPrice: gasPrice,
         // nonce
       }, key as string)
       // if(address != )
        let neTRx =  await web3.eth.sendSignedTransaction(sign.rawTransaction)
-      console.log(address, trx);
-      console.log("trx", neTRx);
+      console.log(address, trx.transactionHash);
+      console.log("trx", neTRx.transactionHash);
 
       let obj = {address};
       let success = myCache.set(address, obj, 86400);

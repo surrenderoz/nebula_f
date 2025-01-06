@@ -27,7 +27,7 @@ export default function TrxModel({hash}: any) {
             </Typography>
             <Button sx={{
                 color: '#B9F7FD'
-            }} href={`https://bb.dym.fyi/r/dev-nebula/tx/${hash}`} target="blank">View Transaction</Button>
+            }} href={`https://explorer.nebula.silknodes.io/local/tx/${hash}`} target="blank">View Transaction</Button>
         </Box>
         </>
     )
