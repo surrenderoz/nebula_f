@@ -33,7 +33,7 @@ export async function ConnectMeta() {
                     "chainId": "0x23a62",
                     "chainName": "Nebula Finance",
                     "rpcUrls": [
-                      "https://nebula.rpc.silknodes.io"
+                      "https://nebula.json-rpc.silknodes.io"
                     ],
                     "iconUrls": [
                       "",
@@ -60,7 +60,7 @@ export async function ConnectMeta() {
                   "chainId": "0x23a62",
                   "chainName": "Nebula Finance",
                   "rpcUrls": [
-                    "https://nebula.rpc.silknodes.io"
+                    "https://nebula.json-rpc.silknodes.io"
                   ],
                   "iconUrls": [
                     "https://xdaichain.com/fake/example/url/xdai.svg",
