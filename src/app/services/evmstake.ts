@@ -19,9 +19,11 @@ export async function ConnectMeta() {
     // const sig = await web3.eth.personal.sign("hello", "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd", "password!");
     //@ts-ignore
     const chainID = await ethereum.request({method: "eth_chainId"});
-    // console.log(chainID, "chaindi");
+    console.log(chainID, "chaindi");
     
     if(chainID != "0x23a62") {
+      // console.log("d");
+      
         //@ts-ignore
        async function Attatch () {
         try {
@@ -45,13 +47,15 @@ export async function ConnectMeta() {
                       "decimals": 18
                     },
                     "blockExplorerUrls": [
-                      "https://bb.dym.fyi/r/dev-nebula"
+                      "https://explorer.nebula.silknodes.io/local"
                     ]
                   }
                 ]
               });
              
            } catch (error) {
+            console.log(error, "there");
+            
             //@ts-ignore
             await ethereum.request({
               "method": "wallet_addEthereumChain",
@@ -72,7 +76,7 @@ export async function ConnectMeta() {
                     "decimals": 18
                   },
                   "blockExplorerUrls": [
-                    ""
+                    "https://explorer.nebula.silknodes.io/local"
                   ]
                 }
               ]
